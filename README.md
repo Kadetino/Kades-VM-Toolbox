@@ -42,7 +42,7 @@ docker compose ps
 The app will be availaible on port `4173`:
 
 ```
-http://localhost:4173.
+http://localhost:4173
 ```
 
 ---
@@ -56,8 +56,8 @@ http://localhost:4173.
 ### 2. Download and install the locked dependencies
 
 ```sh
-git clone https://github.com/OWNER/REPOSITORY.git
-cd REPOSITORY
+git clone https://github.com/Kadetino/Kades-VM-Toolbox.git
+cd Kades-VM-Toolbox/
 npm ci
 ```
 ### 3. Verify the source
