@@ -1,0 +1,11 @@
+services:
+  toolbox:
+    build:
+      context: .
+    image: kades-vm-toolbox:local
+    container_name: kades-vm-toolbox
+    
+    restart: unless-stopped
+    
+    ports:
+      - "4173:8080"

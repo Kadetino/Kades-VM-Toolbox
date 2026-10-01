@@ -1,0 +1,27 @@
+{
+  "name": "kades-vm-toolbox",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 4173",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 4173",
+    "check": "astro check",
+    "test": "node --experimental-strip-types tests/import-zip.mjs"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "9.0.1",
+    "astro": "7.3.5",
+    "fflate": "0.8.3",
+    "svelte": "5.57.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@xmldom/xmldom": "0.9.12",
+    "prettier": "3.9.9",
+    "prettier-plugin-astro": "1.1.0",
+    "prettier-plugin-svelte": "4.1.1",
+    "typescript": "6.0.3"
+  }
+}

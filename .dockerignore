@@ -1,0 +1,10 @@
+.git
+.github
+.astro
+.sites-runtime
+dist
+node_modules
+npm-debug.log*
+*.zip
+*.tar.gz
+

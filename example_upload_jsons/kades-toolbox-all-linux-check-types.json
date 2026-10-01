@@ -1,0 +1,113 @@
+{
+  "namespace": "org.kade.linux.demo",
+  "title": "Linux OVAL check-type demonstration baseline",
+  "profileTitle": "All Linux check types",
+  "description": "Demonstrates text-file, systemd, Debian package, RPM package, file ownership and permissions, and sysctl OVAL checks. Review distribution-specific package names, service names, ownership and modes before production use.",
+  "version": "1.0.0",
+  "status": "draft",
+  "rules": [
+    {
+      "id": 1,
+      "title": "Disable SSH root login",
+      "description": "Require PermitRootLogin to be set to no in the OpenSSH server configuration.",
+      "severity": "high",
+      "selected": true,
+      "kind": "textfile",
+      "path": "/etc/ssh/sshd_config",
+      "pattern": "^[\\t ]*PermitRootLogin[\\t ]+no[\\t ]*$"
+    },
+    {
+      "id": 2,
+      "title": "Enable SSH public-key authentication",
+      "description": "Require PubkeyAuthentication to be enabled in the OpenSSH server configuration.",
+      "severity": "high",
+      "selected": true,
+      "kind": "textfile",
+      "path": "/etc/ssh/sshd_config",
+      "pattern": "^[\\t ]*PubkeyAuthentication[\\t ]+yes[\\t ]*$"
+    },
+    {
+      "id": 3,
+      "title": "Disable SSH password authentication",
+      "description": "Require PasswordAuthentication to be disabled in the OpenSSH server configuration.",
+      "severity": "high",
+      "selected": true,
+      "kind": "textfile",
+      "path": "/etc/ssh/sshd_config",
+      "pattern": "^[\\t ]*PasswordAuthentication[\\t ]+no[\\t ]*$"
+    },
+    {
+      "id": 4,
+      "title": "Disallow empty SSH passwords",
+      "description": "Require PermitEmptyPasswords to be disabled in the OpenSSH server configuration.",
+      "severity": "high",
+      "selected": true,
+      "kind": "textfile",
+      "path": "/etc/ssh/sshd_config",
+      "pattern": "^[\\t ]*PermitEmptyPasswords[\\t ]+no[\\t ]*$"
+    },
+    {
+      "id": 5,
+      "title": "Disable SSH X11 forwarding",
+      "description": "Require X11Forwarding to be disabled in the OpenSSH server configuration.",
+      "severity": "medium",
+      "selected": true,
+      "kind": "textfile",
+      "path": "/etc/ssh/sshd_config",
+      "pattern": "^[\\t ]*X11Forwarding[\\t ]+no[\\t ]*$"
+    },
+    {
+      "id": 6,
+      "title": "Ensure Docker is running",
+      "description": "Require docker.service to report ActiveState=active through systemd.",
+      "severity": "medium",
+      "selected": true,
+      "kind": "systemd",
+      "unit": "docker.service",
+      "property": "ActiveState",
+      "expectedValue": "active"
+    },
+    {
+      "id": 7,
+      "title": "Ensure auditd is installed through Debian packages",
+      "description": "Demonstrate a native Debian package database check for the auditd package.",
+      "severity": "high",
+      "selected": true,
+      "kind": "dpkg",
+      "packageName": "auditd"
+    },
+    {
+      "id": 8,
+      "title": "Ensure audit is installed through RPM packages",
+      "description": "Demonstrate a native RPM package database check for the audit package.",
+      "severity": "high",
+      "selected": true,
+      "kind": "rpm",
+      "packageName": "audit"
+    },
+    {
+      "id": 9,
+      "title": "Protect the shadow password file",
+      "description": "Require /etc/shadow to be owned by root, grouped as root, and have mode 0600. Adjust the group and mode for distributions that use a dedicated shadow group.",
+      "severity": "high",
+      "selected": true,
+      "kind": "file",
+      "path": "/etc/shadow",
+      "ownerId": "0",
+      "groupId": "0",
+      "fileMode": "0600"
+    },
+    {
+      "id": 10,
+      "title": "Enable address-space layout randomization",
+      "description": "Require the kernel.randomize_va_space sysctl value to be 2 for full ASLR.",
+      "severity": "high",
+      "selected": true,
+      "kind": "sysctl",
+      "sysctlName": "kernel.randomize_va_space",
+      "expectedValue": "2",
+      "datatype": "int",
+      "operation": "equals"
+    }
+  ]
+}
